@@ -1,0 +1,39 @@
+{
+"big":[
+			{"src":"img/banner1.jpg",
+			"bgcolor":"#f96968",
+			"href":"#"},
+			{"src":"img/banner2.jpg",
+			"bgcolor":"#a5e4f7",
+			"href":"#"},
+			{"src":"img/banner3.jpg",
+			"bgcolor":"#b08eff",
+			"href":"#"},
+			{"src":"img/banner4.jpg",
+			"bgcolor":"#eeebe6",
+			"href":"#"},
+			{"src":"img/banner5.jpg",
+			"bgcolor":"#d0fcf0",
+			"href":"#"}
+		],
+"small":[
+			{"src":"img/smallbanner1.jpg",
+			"href":"#"},
+			{"src":"img/smallbanner2.jpg",
+			 "href":"#"},
+			{"src":"img/smallbanner3.jpg",
+			 "href":"#"},
+			{"src":"img/smallbanner4.jpg",
+			 "href":"#"},
+			{"src":"img/smallbanner5.jpg",
+			 "href":"#"}
+		],
+"right":[
+			{"src":"img/banner-right1.jpg",
+			"href":"#"},
+			{"src":"img/banner-right2.jpg",
+			 "href":"#"},
+			{"src":"img/banner-right3.jpg",
+			 "href":"#"}
+		]
+}
