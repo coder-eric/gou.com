@@ -1,0 +1,450 @@
+$width:1000px;
+@mixin center{
+    margin:0 auto;
+}
+@mixin boxsize{
+    box-sizing: border-box;
+}
+.login-top{
+    width:$width;
+    height:103px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    @include center;
+    a{
+        float:left;
+        padding-top: 20px;
+    }
+    >img{//>
+        float:right;
+        padding-top: 103px-44px;
+    }
+}
+.login-main{
+    width:960px;
+    height:600px;
+    padding-top: 30px;
+    padding-right: 960px-375px-500px;
+    @include boxsize;
+    @include center;
+    .login{
+        @include boxsize;
+        width:372px;
+        height:356px;
+        padding:0 40px;
+        float:right;
+        border:1px solid #ccc;
+        border-top: 2px solid #ea3918;
+        a{
+            font-size: 12px;
+            color:#999;
+            &:hover{
+                color:#128cff;
+            }
+        }
+        h3{
+            float: left;
+            font-size: 20px;
+            padding-top: 23px;
+        }
+        .login-register{
+            float:right;
+            padding-top: 26px;
+            
+        }
+        .form{
+            p{
+                font-size: 12px;
+                line-height: 24px;
+                color:red;
+                width:290px;
+                height:24px;
+                display: none;
+            }
+            .uname{//用户名
+                position:relative;
+                width:290px;
+                height:32px;
+                margin-top: 66px;
+                padding-bottom: 24px;
+                span{  
+                    position:absolute;
+                    left: 1px;
+                    top:1px;  
+                    float: left;
+                    width: 31px;
+                    height:32px;
+                    background: url(../img/login.png) 0px -52px no-repeat;
+                }
+                input{
+                    color:#999;
+                    float:left;
+                    width:280px;
+                    height:30px;
+                    border:1px solid #dedede;
+                    text-indent: 40px;
+                    font-size: 14px;
+                }
+            }
+            .upwd{//密码
+                @extend .uname;
+                margin-top: 0px;
+                span{  
+                    background: url(../img/login.png) 0px 0px no-repeat;
+                }
+            }
+            .secuirtyCode{//验证码
+                div{
+                    float:left;
+                    width:290px;
+                    height:32px;
+                    input{
+                        color:#999;
+                        width:108px;
+                        height:30px;
+                        border:1px solid #dedede;
+                        font-size: 14px;
+                        text-indent: 8px;
+                        float:left;
+                    }
+                    #v_container{
+                        float:left;
+                        padding:5px 0 0 3px;
+                        width:85px;
+                        height:25px;
+                    }
+                    a{
+                        float:left;
+                        padding:11px 0 0 8px;
+                    }
+                }
+            }
+            .forget{
+                float:right;
+                padding: 26px 0 6px;
+            }
+            #login-btn{
+                cursor: pointer;
+                width:290px;
+                height:40px;
+                border:none;
+                border-radius: 3px;
+                background: #e83917;
+                font-size: 20px;
+                color:#fff;
+            }
+        }
+        .use-other{
+            width:290px;
+            height:20px;
+            padding-top:20px;
+            span{
+                float:left;
+                font-size: 12px;
+                color:#999;
+                padding-top: 3px;
+            }
+            a{
+                float:left;
+                width:20px;
+                height:20px;
+                margin-left: 15px;
+                background:url(../img/login.png) 0 -128px no-repeat;
+                &:nth-child(2){
+                    background-position-x: -26px;
+                }
+                &:nth-child(3){
+                    background-position-x: -66px;
+                }
+                &:nth-child(4){
+                    background-position-x: -106px;
+                }
+                &:nth-child(5){
+                    background-position-x: -146px;
+                }
+            }
+        }
+    }
+}
+footer{
+    padding-top: 50px;
+    width:100%;
+    margin-bottom: 21px-6px;
+    .footer-top-wrap{
+        height:35px;
+        background: #444851;
+        margin-bottom:4px ;
+        .footer-top{
+            width:1004px;
+            line-height: 35px;
+            @include center;
+            a{
+                font-size: 12px;
+                padding:0 19px;
+                border-right: 1px solid #4e5553;
+                color:#adadad;
+                &:nth-child(11){
+                    border:none;
+                }
+            }
+        }
+    }
+    p{
+        width:1010px;
+        @include center;
+        font-size: 12px;
+        text-align: center;
+        line-height: 24px;
+        a{
+            color: black;
+        }
+    }
+}
+/*
+ * 注册页面开始
+ */
+.register{
+        @include boxsize;
+        width:372px;
+        padding:0 40px;
+        float:right;
+        border:1px solid #ccc;
+        border-top: 2px solid #ea3918;
+        span{
+            float:left;
+            height:24px;
+            line-height: 24px;
+            font-size: 12px;
+        }
+        a{
+            font-size: 12px;
+            color:#999;
+            &:hover{
+                color:#128cff;
+            }
+        }
+        h3{
+            float: left;
+            font-size: 20px;
+            padding-top: 23px;
+        }
+        .register-register{
+            float:right;
+            padding-top: 26px;
+            font-size: 12px;
+            
+        }
+        .form{
+            ul{
+                margin-top: 22px;
+                float:left;
+                overflow: hidden;
+                li{
+                    float:left;
+                    height:56px;
+                    width:290px;
+                    input{
+                        color:#999;
+                        width:288px;
+                        height:30px;
+                        border:1px solid #dedede;
+                        text-indent: 5px;
+                        font-size: 14px;
+                    }
+                    span{
+                        display: block;
+                        height:24px;
+                        line-height: 24px;
+                        font-size: 12px;
+                        color:red;
+                    }
+                }
+            }
+            .secuirtyCode{
+                div{
+                    width:290px;
+                    height:32px;
+                    input{
+                        float: left;
+                        width:108px;
+                        height:28px;
+                    }
+                    #v_container{
+                        float:left;
+                        padding:5px 0 0 3px;
+                        width:85px;
+                        height:25px;
+                    }
+                    a{
+                        float:left;
+                        padding:11px 0 0 8px;
+                        margin-right:10px;
+                    }
+                    span{
+                        width:15px;
+                        height: 14px;
+                        margin:10px 3px 0;
+                        background: url(../img/login.png) -1px -111px no-repeat;
+                        display: none;
+                    }
+                }
+                span{
+                    display: none;
+                }
+            }
+            .sms-code{
+                div{
+                    width:290px;
+                    height:32px;
+                    input:nth-child(1){
+                        float: left;
+                        width: 108px;
+                        height: 30px;
+                        border:1px solid #dedede;
+                        text-indent: 8px;  
+                    }
+                    input:nth-child(2){
+                        width: 112px;
+                        height: 32px;
+                        text-indent: 8px;
+                        font-size: 12px; 
+                        color: #444;
+                        border:1px solid #ccc;
+                        background: #eee; 
+                        margin-left: 3px;
+                    }
+                    span{
+                        height:32px;
+                        line-height: 32px;
+                        padding-left: 3px;
+                    }
+                }
+            }
+            .registration-protocol{
+                height: 24px;
+                line-height: 24px;
+                float: left;
+                label{
+                     font-size: 12px;
+                }
+            }
+            #register-btn{
+                cursor: pointer;
+                width:290px;
+                height:40px;
+                border:none;
+                border-radius: 3px;
+                background: #e83917;
+                font-size: 20px;
+                color:#fff;
+            }
+        }
+        .other-code{
+            width:290px;
+            height:12px;
+            font-size: 12px;
+            text-align: center;
+            padding:22px 0 33px;
+            a{
+                color: #128cff;
+            }
+        }
+    }
+//注册成功页面开始
+.register-suceess{
+    width:1000px;
+    height:800px;
+    margin:0 auto;
+    .top{
+        padding:60px 0 0 272px;
+        span{
+            float:left;
+            width:72px;
+            height:72px;
+            background: url(../img/login.png) -1px -276px;
+        }
+        p{
+            padding-left: 92px;
+            font-size: 14px;
+            height:22px;
+            line-height:22px;
+        }
+        a{
+            float:left;
+            width:120px;
+            height:40px;
+            background: #e83917;
+            color:white;
+            font-size: 16px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 3px;
+            margin:16px 0 16px 92px;
+        }
+    }
+    >img{
+        padding-left:196px ;   
+    }
+    .check-email{
+        text-align: center;
+        width:600px;
+        padding:0 196px;
+        div{
+            width:602px;
+            height:44px;
+            border: 1px solid #ddd;
+            margin-top: 40px;
+            i{
+                float: left;
+                width:23px;
+                height:20px;
+                margin:13px 6px 0 30px;
+                background:url(../img/login.png) -178px -116px;
+            }
+            p{
+                font-size: 14px;
+                color:#444;
+                height:44px;
+                line-height: 44px;
+                span{
+                    color:red;
+                }
+            }
+        }
+        h5{
+            font-size: 14px;
+            height:14px;
+            padding-top: 40px;
+            padding-bottom: 12px;
+        }
+        hr{
+            background:#e83917;
+            height:2px;
+        }
+        >p{
+            float: left;
+            font-size: 14px;
+            color:#444;
+            padding-left: 30px;
+            padding-top: 28px;
+        }
+        input:nth-child(5){
+            float: left;
+            width:290px;
+            height:40px;
+            border:1px solid #ccc;
+            margin-top: 14px;
+        }
+        input:nth-child(6){
+            float: left;
+            width:128px;
+            height:40px;
+            border:1px solid #ccc;
+            background: #fafafa;
+            font-size: 12px;
+            color:#444;
+            margin-top: 14px;
+            margin-left: 10px;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户登录</title>
+		<link rel="stylesheet" type="text/css" href="../css/userinfo.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="shortcut icon" href="../img/icon.ico">
+		<script src="../script/jquery.min.js"></script>
+		<script src="../script/gVerify.js"></script>
+		<script src="../script/login.js"></script>
+	</head>
+	<body>
+		<section class="login-top"></section>
+		<section class="login-main">
+			<img src="../img/login-mid.png"/>
+			<div class="login">
+				<h3>登录</h3>
+				<a href="register.html" class="login-register">免费快速注册</a>
+				<div class="form">
+					<ul>
+						<li class="uname">
+							<span></span>
+							<input type="text" name="uname" id="uname" maxlength="11" placeholder="手机号码/邮箱/用户名"/>
+							<p class="p1">错误</p>
+						</li>
+						<li class="upwd">
+							<span></span>
+							<input type="password" name="upwd" id="upwd" maxlength="20" placeholder="密码"/>
+							<p class="p2">错误</p>
+						</li>
+						<li class="secuirtyCode">
+							<div>
+								<input type="text" name="secuirtyCode" maxlength="4" placeholder="验证码"/>
+								<div id="v_container"></div>
+								<a href="#">换一张</a>
+							</div>
+							<p class="p3">验证码有误，请重新输入</p>
+						</li>
+					</ul>
+					<a href="#" class="forget">忘记密码？</a>
+					<input type="button" id="login-btn" value="登录"/>
+				</div>
+				<div class="use-other">
+					<span>使用其他账号登录：</span>
+					<a href="#"></a>
+					<a href="#"></a>
+					<a href="#"></a>
+					<a href="#"></a>	
+				</div>
+			</div>
+		</section>
+		<footer></footer>
+	</body>
+</html>

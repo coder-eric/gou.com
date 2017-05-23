@@ -97,7 +97,7 @@ $(function(){
 	}
 	//刷新图片
 	Banner.prototype.refresh = function(){
-		$(".banner-inner>a").eq(this.index).addClass("on").fadeIn(1000).find("img").css({"width":840,"left":-15,"top":-9}).stop().animate({"width":810,"left":0,"top":0},3000).parent().siblings().removeClass("on").fadeOut(1000);
+		$(".banner-inner>a").eq(this.index).addClass("on").fadeIn(1000).find("img").css({"width":840,"left":-15}).stop().animate({"width":810,"left":0,"top":0},3000).parent().siblings().removeClass("on").fadeOut(1000);
 		var str = $(".banner-inner>a").eq(this.index).data("color");
 		$(".banner-wrap").css("background",str);
 		$(".banner-small a").eq(this.index).stop().animate({"top":-10},500).siblings().stop().animate({"top":0},500)
@@ -125,50 +125,203 @@ $(function(){
 	}
 	//初始化函数
 	Tab.prototype.init = function(){
-		this.refresh();
+		this.create();
 		this.change();
 	}
-	//划过导航改变index值
-	Tab.prototype.change = function(){
-		var that = this;
-		$(".nav-all ul li").mouseover(function(){
-			that.index = $(this).index();
-			$(this).css("background","#a90000").find("div").stop().animate({"left":15},100);
-			that.refresh();
-			$(".nav-tab").fadeIn(100).stop().animate({"left":180},100)
-		})
-		$(".nav-all ul li").mouseout(function(){
-			that.index = $(this).index();
-			$(this).css("background","#cb3e25").find("div").stop().animate({"left":0},100);
-			$(".nav-tab").css("display","none").stop().animate({"left":165},100)
-		})
-	}
-	//根据index刷新导航动画，显示对应内容
-	Tab.prototype.refresh = function(){
-		var that = this;
+	//加载导航数据
+	Tab.prototype.create = function(){
 		$.ajax({
 			type:"get",
 			url:"json/nav.json",
 			async:true,
 			success:function(xhr){
 				var html = "<ul>";
-				var msg = xhr[that.index];
-				for( var i in  msg){
-					html += `<li><h5>${msg[i].title}</h5>`;
-					for( var j in msg[i].linkA ){
-						html += `<a href="${msg[i].linkA[j].href}" style="color:${msg[i].linkA[j].color}">${msg[i].linkA[j].content}</a>`;
+				for( var i in xhr ){
+					html += "<li><ul>";
+					for( var j in  xhr[i]){
+						html += `<li><h5>${xhr[i][j].title}</h5>`;
+						for( var k in xhr[i][j].linkA ){
+							html += `<a href="${xhr[i][j].linkA[k].href}" style="color:${xhr[i][j].linkA[k].color}">${xhr[i][j].linkA[k].content}</a>`;
+						}
+						html+=`</li>`;
 					}
-					html+=`</li>`;
+					html += `</ul></li>`;
 				}
-				html += `</ul>`;
+				html += "</ul>";
 				$(".nav-tab").html(html);
 			}
 		});
 	}
+	//划过左侧导航改变显示对应内容
+	Tab.prototype.change = function(){
+		var that = this;
+		$(".nav-all>ul>li").mouseenter(function(){
+			that.index = $(this).index();
+			$(this).css("background","#a90000").find("div").stop().animate({"left":15},100);
+			$(".nav-tab>ul>li").eq(that.index).css("display","block").animate({"opacity":1,"left":180},100).siblings().animate({"opacity":0.3,"left":165},300).css({"display":"none"});
+			$(".nav-tab").fadeIn(100).stop().animate({"left":180},100)
+		})
+		$(".nav-all>ul>li").mouseleave(function(){
+			that.index = $(this).index();
+			$(this).css("background","#cb3e25").find("div").stop().animate({"left":0},100);
+			$(".nav-tab").css("display","none").stop().animate({"left":165},100)
+		})
+	}
 	var tab = new Tab();
+	//吸顶效果
+	$(window).scroll(function(){
+//		console.log($(".half-price").offset().top +"-"+$(document).scrollTop())
+		if( $(".half-price").offset().top <=$(document).scrollTop()){
+			$(".ceiling-wrap").stop().animate({"top":0},50)
+		}else{
+			$(".ceiling-wrap").stop().animate({"top":-40},50)
+		}
+	})
+	//整点抢
+	//宝贝加载
+	$.ajax({
+		type:"get",
+		url:"json/on-time.json",
+		success:function(xhr){
+			var count = 0;
+			for( var i in xhr ){
+				var html = "";
+				if( !count ){
+					html = `<ul style="display:block">`;
+					count++;
+				}else{
+					html = `<ul style="display:none">`;
+				}
+				for( var j in xhr[i] ){
+					html+=`<li>
+								<a href="${xhr[i][j].href}">
+									<img src="${xhr[i][j].src}"/>
+								</a>
+								<a href="${xhr[i][j].href}"><span>${xhr[i][j].span}</span>${xhr[i][j].title}</a>
+								<h1>¥<span>${xhr[i][j].price}</span></h1>
+								<h5>价格¥<span>${xhr[i][j].prevprice}</span></h5>
+								<a href="${xhr[i][j].href}">马上抢</a>
+							</li>`;
+				}
+//				html=`</ul>`;
+				$(".p-list").append(html);
+			}
+		}
+	})
+	$(".onTime .time li").click(function(){
+		$(this).css("background","#CB351A").siblings().css("background","#6c6c6c");
+		
+	})
+	
+	//今日半价
+	$.ajax({
+		type:"get",
+		url:"json/half-price.json",
+		success:function(xhr){
+			var html=`<ul>`;
+			for( var i in xhr ){
+				html+=`<li>
+							<a href="${xhr[i].href}">
+								<img src="${xhr[i].src}"/>
+								<span><span>${xhr[i].span}</span>${xhr[i].title}</span>
+								<h1>￥<span>${xhr[i].price}</span></h1>
+								<h5>价格￥ <span>${xhr[i].prevprice}</span></h5>
+								<p>已售&nbsp;${xhr[i].number}&nbsp;件</p>
+								<div>马上抢<i></i></div>
+							</a>
+						</li>`;
+			}
+//			html=`</ul>`;
+			$(".half-price").append(html);
+		}
+	})
+	
+	//特卖
+	function Sale(){
+		this.timer=null;
+	}
+	Sale.prototype.init = function(){
+		this.create();
+	}
+	Sale.prototype.create = function(obj){
+		var html = `<li>
+						<a href="${obj.href}"><img src="${obj.src}"/></a>
+						<div>
+							<p>${obj.title}</p>
+							<p>
+								<i></i>
+								<span>剩余 4天00小时40分32秒</span>
+							</p>
+							<span><b>${obj.discount}</b>折起</span>
+						</div>
+					</li>`;
+					$(".sale ul").append(html);
+	}
+	$.ajax({
+		type:"get",
+		url:"json/sale.json",
+		async:true,
+		success:function(xhr){
+			for( var i in xhr ){
+				var obj = new Sale();
+				obj.create(xhr[i]);
+			}
+		}
+	});
+	
+	//猜你喜欢
+	$.ajax({
+		type:"get",
+		url:"json/love.json",
+		async:true,
+		success:function(xhr){
+			var count = 0;
+			for( var i in xhr ){
+				var html = "";
+				if( !count ){
+					html = `<ul style="display:block">`;
+					count++;
+				}else{
+					html = `<ul style="display:none">`;
+				}
+				for( var j in xhr[i] ){
+					html += `<li>
+								<a href="${xhr[i][j].href}">
+									<img src="${xhr[i][j].src}"/>
+									<p><span>${xhr[i][j].span}</span>${xhr[i][j].title}</p>
+									<h1>￥<b>${xhr[i][j].price}</b><span>价格<span>￥${xhr[i][j].prevprice}</span></span></h1>
+								</a>
+							</li>`;
+				}
+				$(".love-list").append(html)
+			}
+		}
+	})
+	
+	//最近关注
+	$.ajax({
+		type:"get",
+		url:"json/near.json",
+		async:true,
+		success:function(xhr){
+			var html = `<ul>`
+			for( var i in xhr ){
+				html += `<li>
+							<a href="${xhr[i].href}">
+								<i></i>
+								<img src="${xhr[i].src}"/>
+								<i></i>
+							</a>
+						</li>`;
+			}
+			$(".nearest").append(html);
+		}
+	})
 	
 	
 	
 	
-
+	
+	
+	
 })

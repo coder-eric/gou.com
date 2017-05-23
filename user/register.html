@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户注册</title>
+		<link rel="stylesheet" type="text/css" href="../css/userinfo.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="shortcut icon" href="../img/icon.ico">
+		<script src="../script/jquery.min.js"></script>
+		<script src="../script/gVerify.js"></script>
+		<script src="../script/register.js"></script>
+	</head>
+	<body>
+		<section class="login-top"></section>
+		<section class="login-main">
+			<img src="../img/login-mid.png"/>
+			<div class="register">
+				<h3>新用户注册</h3>
+				<span class="register-register">已有麦乐购账号，<a href="login.html">直接登录</a></span>
+				<div class="form">
+					<ul>
+						<li>
+							<input type="text" name="uname" id="uname" maxlength="11" placeholder="请输入手机号码"/>
+							<span class="s1"></span>
+						</li>
+						<li>
+							<input type="password" name="upwd" id="upwd" maxlength="20" placeholder="请输入密码"/>
+							<span class="s2"></span>
+						</li>
+						<li>
+							<input type="password" name="upwd" id="confirm-upwd" maxlength="20" placeholder="请再次输入密码"/>
+							<span class="s3"></span>	
+						</li>
+						<li class="secuirtyCode">
+							<div>
+								<input type="text" name="secuirtyCode" maxlength="4" placeholder="验证码"/>
+								<span></span>
+								<div id="v_container"></div>
+								<a href="#">换一张</a>
+							</div>
+							<span class="s4">验证码有误，请重新输入</span>
+						</li>
+						<li class="sms-code">
+							<div>
+								<input type="text" placeholder="短信校验码"/>
+								<input type="button" name="" id="sms-code-btn" value="获取短信验证码"/>
+								<span></span>
+							</div>
+							<span class="s5"></span>
+						</li>
+					</ul>
+					<div class="registration-protocol">
+						<input type="checkbox" name="" id="registration-protocol"/>
+						<label for="registration-protocol">已阅读并同意</label>
+						<a href="#">《麦乐购注册协议及交易条款》</a>
+					</div>
+					<input type="hidden" name="status" value="register"/>
+					<input type="button" id="register-btn" value="注册"/>
+				</div>
+				<p class="other-code">
+					收不到短信？请使用
+					<a href="#">语音验证码</a>
+				</p>
+			</div>
+		</section>
+		<footer></footer>
+	</body>
+</html>
